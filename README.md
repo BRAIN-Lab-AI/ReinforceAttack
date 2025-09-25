@@ -27,7 +27,7 @@ For **patch-based** attacks, the modification is restricted to a small region $E
 $$
 x_{u,v} =
 \begin{cases}
-T(x_{u,v}), & (u,v)\in E,\\[4pt]
+T(x_{u,v}), & (u,v)\in E,\\
 x_{u,v}, & \text{otherwise.}
 \end{cases}
 $$
