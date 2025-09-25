@@ -17,7 +17,22 @@ On ImageNet models (ResNet, DenseNet, ResNeXt, MobileNetV2), PatchAttack’s tex
 
 
 ## Problem Statement
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+The problem is to cause a classifier to err using **only query access** by altering a **small, localized** image region.
+### Mathematical Modeling
+Let \( f(x;\theta) \) be a deep nural network, where \(x\) is the input image, and \(\theta\) are model parameters. An adversarial example is obtained by applying a transformation \( g(\cdot) \) to \(x\) and optimizing a loss \( L(y, y_0) \) with \( y = f(g(x);\theta) \); here \( y_0 \) denotes a target class and \( y \) the ground-truth label. In **targeted** attacks, the objective is to increase the score for \( y_0 \); in **non-targeted** attacks, the objective is to induce misclassification.
+
+For **patch-based** attacks, the modification is restricted to a small region \( E \subseteq \{(u,v)\mid u \in [0,H),\, v \in [0,W)\} \). Pixels inside \(E\) are transformed by \(T(\cdot)\) while others remain unchanged:
+$$
+x_{u,v} =
+\begin{cases}
+T(x_{u,v}), & (u,v)\in E,\\[4pt]
+x_{u,v}, & \text{otherwise.}
+\end{cases}
+$$
+The region \(E\) is selected by a search mechanism \( s(\cdot) \) over a candidate space \( S \) and may depend on the specific image \(x\) and network \(f\). \(H, W\) denote image height and width; \((u,v)\) are pixel coordinates.
+
+**Research question:** Given only model outputs, can a compact, localized modification—specified by \(E\) and \(T\)—reliably induce targeted or non-targeted misclassification while respecting small-area and practical query budgets?
+
 
 ## Application Area and Project Domain
 Write 1-2 technical paragraphs (feel free to add images if you would like).
