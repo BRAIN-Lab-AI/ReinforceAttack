@@ -44,7 +44,9 @@ This project lies in the domain of adversarial machine learning for computer vis
 
 
 ## What is the paper trying to do, and what are you planning to do?
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+The paper introduces PatchAttack, a query-efficient black-box adversarial patch method designed to fool image classifiers by learning both where to place a patch and what it should look like. Unlike global perturbations, PatchAttack constrains modifications to a small, visible region while operating under limited query budgets. By framing the problem as a reinforcement-learning task and leveraging a texture dictionary, the approach achieves strong results in both targeted and non-targeted settings, even against robust models and defense mechanisms.
+
+Building on this, the Textured Patch Attack (TPA) will be extended by increasing the action space beyond the limited, pre-chosen square regions used in the paper. Specifically, the study will **investigate the impact of allowing variable patch areas** and of **not restricting patch shapes to preselected squares** during the attack process. This flexibility can let patches better align with class-discriminative image regions, potentially reducing the required patch area or the number of queries needed to reach high success rates. The objective is to determine whether expanding area and shape options improves attack efficiency and effectiveness while preserving practical constraints for real-world deployment.
 
 
 # THE FOLLOWING IS SUPPOSED TO BE DONE LATER
