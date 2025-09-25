@@ -39,7 +39,9 @@ The region $E$ is selected by a search mechanism $s(\cdot)$ over a candidate spa
 
 
 ## Application Area and Project Domain
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+This project lies in the domain of adversarial machine learning for computer vision, with a focus on secure and reliable systems through robustness evaluation and attack optimization. It addresses localized, physically realizable black-box patch attacks under a query-only threat model (no access to gradients or parameters), which mirrors how models are commonly deployed in practice—via APIs, embedded devices, or third-party services—making the setting closer to real-world conditions than traditional white-box assumptions. The work formulates patch attacks as a constrained search problem over patch placement and appearance, bounded by patch size and query budgets, and connects directly to practical applications such as surveillance cameras, traffic-sign recognition in autonomous driving, and face-recognition access control systems.
+
+
 
 ## What is the paper trying to do, and what are you planning to do?
 Write 1-2 technical paragraphs (feel free to add images if you would like).
