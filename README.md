@@ -7,7 +7,12 @@
 - **Affiliations:** KFUPM
 
 ## Introduction
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+Patch attacks modify only a small, localized region of an image yet can force a victim model to misclassify—either toward a specific target label or away from the ground-truth label. This paper introduces PatchAttack, a query-efficient black-box method that learns both where to place patches and what they should look like. The attack can be modeled as a reinforcement-learning (RL) problem: an agent chooses a patch (either a monochrome patch or a crop from a learned texture dictionary) and its location (the action space), queries the victim model (the environment) with the patched image, receives a reward based on the model’s output probabilities, and updates its policy to optimize next actions. Figure 1 illustrates this loop.
+
+![Figure 1: black-box texture-based patch attack via reinforcement learning.](images/fig1.png)
+
+On ImageNet models (ResNet, DenseNet, ResNeXt, MobileNetV2), PatchAttack’s textured variant (TPA) reduces top-1 accuracy to <1% with only ~3% of pixels modified and ~10³ queries in the non-targeted case, and achieves ≈100% target-label accuracy while modifying on the order of 10% of the image. Beyond raw success rate, it is markedly more query-efficient than Metropolis–Hastings patch search and remains effective against defenses such as Feature Denoising (Denoise-ResNet152) and shape-biased networks trained on Stylized-ImageNet.
+
 
 ## Problem Statement
 Write 1-2 technical paragraphs (feel free to add images if you would like).
