@@ -48,7 +48,7 @@ We revisit **PatchAttack** a query-efficient, black-box adversarial patch framew
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/Project_report.pdf))
+- **Report:** [Project Report](/Project_report.pdf)
 
 ### Reference Papers
 - [PatchAttack: A Black-box Texture-based Attack
