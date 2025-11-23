@@ -58,7 +58,7 @@ with Reinforcement Learning](https://arxiv.org/pdf/2004.05682)
 
 ### Reference Dataset
 - The texture dictionary (published by the PatchAttack authors) is provided in the following two parts, and Images Test_set is the image group we used for evaluation and comparison.
-- [TextureDict_ImageNet_0.zip](https://laion.ai/blog/laion-5b/](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F0%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
+- [TextureDict_ImageNet_0.zip](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F0%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
 - [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F1%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
 - [Images Test_set](https://drive.google.com/file/d/1a2c4v2KR6OEyHv4PlqcoibOCSQKdG1pp/view?usp=drive_link)
 
