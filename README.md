@@ -44,109 +44,97 @@ This project lies in the domain of adversarial machine learning for computer vis
 
 
 ## What is the paper trying to do, and what are you planning to do?
-The paper introduces PatchAttack, a query-efficient black-box adversarial patch method designed to fool image classifiers by learning both where to place a patch and what it should look like. Unlike global perturbations, PatchAttack constrains modifications to a small, visible region while operating under limited query budgets. By framing the problem as a reinforcement-learning task.
-
-Building on this, the Textured Patch Attack (TPA) will be extended by increasing the action space beyond the limited, pre-chosen square regions used in the paper. Specifically, the study will **investigate the impact of allowing variable patch areas** and of **not restricting patch shapes to preselected squares** during the attack process. This flexibility can let patches better align with class-discriminative image regions, potentially reducing the required patch area or the number of queries needed to reach high success rates. The objective is to determine whether expanding area and shape options improves attack efficiency, and wehther a more expressive policy model (e.g., a transformer) outperforms the LSTM used in the original paper.
-
-
-# THE FOLLOWING IS SUPPOSED TO BE DONE LATER
+We revisit **PatchAttack** a query-efficient, black-box adversarial patch framework that learns both where to place a patch and what it should look like—and elevate patch geometry to a first-class decision. Building on the textured variant (TPA), we design two targeted, score-based black-box attacks: **ShapeAware**, which adds a shape head (circle/triangle/square) with an area-aware reward to encourage compact, overlapping masks; and **PatchCross**, which specializes the mask to a thin X-shape for strong camouflage while keeping the original targeted reward. Under matched budgets (fixed query limits, up to 𝑁 placements with per-step occlusion), we evaluate on **ImageNet ILSVRC-2012** using ResNet-50 and ViT-B/16, reporting attack success rate (ASR), average number of queries (ANQ), and average patch area (APA).
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
 - **Report:** [Project Report](/Project_report.pdf))
 
-### Reference Paper
-- [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+### Reference Papers
+- [PatchAttack: A Black-box Texture-based Attack
+with Reinforcement Learning](https://arxiv.org/pdf/2004.05682)
+- [Cross-Shaped Adversarial Patch Attack](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10225573)
+  
 
 ### Reference Dataset
-- [LAION-5B Dataset](https://laion.ai/blog/laion-5b/)
+- The texture dictionary (published by the PatchAttack authors) is provided in the following two parts, and Images Test_set is the image group we used for evaluation and comparison.
+- [TextureDict_ImageNet_0.zip](https://laion.ai/blog/laion-5b/](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F0%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
+- [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F1%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
+- [Images Test_set](https://drive.google.com/file/d/1a2c4v2KR6OEyHv4PlqcoibOCSQKdG1pp/view?usp=drive_link)
 
 
 ## Project Technicalities
 
-### Terminologies
-- **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
-- **Latent Space:** A compressed, abstract representation of data where complex features are captured.
-- **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
-- **Text Encoder:** A model that converts text into numerical embeddings for downstream tasks.
-- **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Tokenization:** The process of breaking down text into smaller units (tokens) for processing.
-- **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Decoder:** A network component that transforms latent representations back into image space.
-- **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
-- **Conditional Generation:** The process where outputs are generated based on auxiliary inputs, such as textual descriptions.
+## Terminologies
+- **Score-based black-box attack:** Attacker can only **query** the model and read scores/logits; no gradients or internals.
+- **PatchAttack (TPA):** RL-based baseline that selects a **texture** from a class-conditioned dictionary and a **placement** for a **fixed square** mask under area limits.
+- **Texture Dictionary:** Pre-synthesized, class-conditioned textures (built via VGG-19 style descriptors + Grad-CAM + k-means) from which the agent picks.
+- **Union Mask / Occlusion Area:** The combined binary mask from all placed patches; **per-step occlusion** is capped (e.g., 2% of the image).
+- **Evaluation Metrics:**
+  - **ASR** — Attack Success Rate.
+  - **ANQ** — Avg. Number of Queries (report for successes and for all).
+  - **APA** — Avg. Patch Area % (report for successes and for all).
 
-### Problem Statements
-- **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
-- **Problem 2:** Existing models suffer from slow inference times during the image generation process.
-- **Problem 3:** There is limited capability in performing style transfer and generating diverse artistic variations.
+## Problem Statements
+- **P1: Geometry as a decision variable.** Most black-box patch attacks optimize **texture + location** only; **shape is fixed** (usually square), limiting compactness and realism under tight area/query budgets.
+- **P2: Efficiency under strict budgets.** Achieving **high ASR** while **reducing queries (ANQ)** and **union area (APA)** is challenging, especially for **targeted** attacks.
+- **P3: Stability of RL search.** Large/naive action spaces and weak rewards can destabilize learning; designing **principled action spaces + rewards** is non-trivial.
+- **P4: Transformer sensitivity.** Baselines can degrade on **ViT-B/16**, highlighting a need for **richer geometry or better rewards** to maintain ASR with low ANQ/APA.
+- **P5: Comparability.** Mixed reporting protocols across papers (**ASR/ANQ/APA** not consistently split into successes vs. all) hinder fair comparison.
 
-### Loopholes or Research Areas
-- **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
-- **Output Consistency:** Inconsistencies in output quality when scaling the model to higher resolutions.
-- **Computational Resources:** Training requires significant GPU compute resources, which may not be readily accessible.
-
-### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
-1. **Optimized Architecture:** Redesign the model architecture to improve efficiency and balance image quality with faster inference.
-2. **Advanced Loss Functions:** Integrate novel loss functions (e.g., perceptual loss) to better capture artistic nuances and structural details.
-3. **Enhanced Data Augmentation:** Implement sophisticated data augmentation strategies to improve the model’s robustness and reduce overfitting.
 
 ### Proposed Solution: Code-Based Implementation
-This repository provides an implementation of the enhanced stable diffusion model using PyTorch. The solution includes:
 
-- **Modified UNet Architecture:** Incorporates residual connections and efficient convolutional blocks.
-- **Novel Loss Functions:** Combines Mean Squared Error (MSE) with perceptual loss to enhance feature learning.
-- **Optimized Training Loop:** Reduces computational overhead while maintaining performance.
+PyTorch implementation of **score-based black-box adversarial patch attacks** with our geometry-aware variants.
+
+- **ShapeAware (ours):** RL agent picks **texture, location, and shape** (circle/triangle/square) with an **area-aware reward** that encourages compact, overlapping placements.
+- **PatchCross (ours):** Ultra-sparse **X-shaped** geometry (two 1-px diagonals) parameterized by anchor points for strong camouflage at tiny visible area.
 
 ### Key Components
-- **`model.py`**: Contains the modified UNet architecture and other model components.
-- **`train.py`**: Script to handle the training process with configurable parameters.
-- **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
-- **`inference.py`**: Script for generating images using the trained model.
+- **`PatchAttack_config.py`** — `configure_PA(...)` sets budgets and occlusion limits (e.g., `area_occlu=0.02`, `RL_BATCH=200`, `STEPS=20`, `TPA_N_AGENTS=10`).
+- **`PatchAttack_attackers.py`** — Core attackers; entry point `TPA.attack(...)` implements the RL-driven placement loop.
+- **`PatchAttack_agents.py`** — Agent logic for **PatchAttack**, **ShapeAware**, and **PatchCross** action spaces.
+- **`TextureDict_builder.py` / `AdvPatchDict_builder.py`** — Build/load **class-conditioned texture dictionaries**.
+- **`utils.py`** — Compositing ops, masks, logging, metrics (ASR/ANQ/APA), and IO.
+- **<variant_name>.ipynb`** — Minimal end-to-end example.
+  
+### Model Workflow
+1. **Inputs**
+   - **Image `x` (224×224, ImageNet norm)** and **target class `t=723`** (targeted setting).
+   - **Budgets:** placements **N≤10**, per-step occlusion **≤2%**, and query caps.
+   - **Texture dictionary** loaded for class‑conditioned candidate patches.
+2. **Attack Loop**
+   - Agent proposes **(texture, location[, shape])** → compose patch → **query victim model** (ResNet‑50 / ViT‑B/16).
+   - Compute **reward**; update agent (RL).
+   - **Early stop** when the last-3‑step mean log‑reward’s second finite difference **< 1e‑4**.
+3. **Outputs & Metrics**
+   - Return **adversarial image** within budgets.
+   - Report **ASR**, **ANQ** (successes & all), **APA** (successes & all) for fair comparison.
 
-## Model Workflow
-The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
 
-1. **Input:**
-   - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
-   - **Tokenization:** The text prompt is tokenized and processed through a text encoder (such as a CLIP model) to obtain meaningful embeddings.
-   - **Latent Noise:** A random latent noise vector is generated to initialize the diffusion process, which is then conditioned on the text embeddings.
 
-2. **Diffusion Process:**
-   - **Iterative Refinement:** The conditioned latent vector is fed into a modified UNet architecture. The model iteratively refines this vector by reversing a diffusion process, gradually reducing noise while preserving the text-conditioned features.
-   - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
 
-3. **Output:**
-   - **Decoding:** The final refined latent representation is passed through a decoder (often part of a Variational Autoencoder setup) to generate the final image.
-   - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
+
+
 
 ## How to Run the Code
 
-1. **Clone the Repository:**
-    ```bash
-    git clone https://github.com/yourusername/enhanced-stable-diffusion.git
-    cd enhanced-stable-diffusion
-    ```
+1) **Choose an attack variant**  
+   Branches are named after the attacks (e.g., `ShapeAware`, `PatchCross`).
 
-2. **Set Up the Environment:**
-    Create a virtual environment and install the required dependencies.
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-    pip install -r requirements.txt
-    ```
+2) **Get that branch**
+```bash
+# from your repo root
+git fetch --all
+git checkout <variant-branch>   # e.g., git checkout ShapeAware
+```
 
-3. **Train the Model:**
-    Configure the training parameters in the provided configuration file and run:
-    ```bash
-    python train.py --config configs/train_config.yaml
-    ```
+3) **Open the matching notebook**  
+   Run the notebook whose filename matches the variant, e.g.:
+- `Shape_aware.ipynb`
 
-4. **Generate Images:**
-    Once training is complete, use the inference script to generate images.
-    ```bash
-    python inference.py --checkpoint path/to/checkpoint.pt --input "A surreal landscape with mountains and rivers"
-    ```
+
+
 
 ## Acknowledgments
 - **Open-Source Communities:** Thanks to the contributors of PyTorch, Hugging Face, and other libraries for their amazing work.
