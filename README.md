@@ -53,7 +53,7 @@ Building on this, the Textured Patch Attack (TPA) will be extended by increasing
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/[report.pdf](https://github.com/BRAIN-Lab-AI/ReinforceAttack/blob/main/Project_report.pdf))
+- **Report:** [Project Report](/Project_report.pdf))
 
 ### Reference Paper
 - [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
