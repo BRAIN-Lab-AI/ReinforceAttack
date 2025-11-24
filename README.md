@@ -135,8 +135,8 @@ cd ShapeAware    # or: cd PatchCross
 > Tip: Run all cells via `jupyter lab` or `jupyter notebook`.
 
 ### Ready-to-run Kaggle notebooks (temp links)
-- **ShapeAware:** [ShapeAware – Kaggle Notebook](https://kaggle.com/code/YOUR-USER/shapeaware)  
-- **PatchCross:** [PatchCross – Kaggle Notebook](https://kaggle.com/code/YOUR-USER/patchcross)
+- **ShapeAware:** [ShapeAware – Kaggle Notebook](https://www.kaggle.com/code/mangooo999/shapeaware)  
+- **PatchCross:** [PatchCross – Kaggle Notebook](https://www.kaggle.com/code/mangooo999/cross-notebook)
 
 
 
