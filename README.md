@@ -51,9 +51,8 @@ We revisit **PatchAttack** a query-efficient, black-box adversarial patch framew
 - **Report:** [Project Report](/Project_report.pdf)
 
 ### Reference Papers
-- [PatchAttack: A Black-box Texture-based Attack
-with Reinforcement Learning](https://arxiv.org/pdf/2004.05682)
-- [Cross-Shaped Adversarial Patch Attack](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10225573)
+- [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/pdf/2004.05682), [GitHub repository](https://github.com/Chenglin-Yang/PatchAttack)
+- [Cross-Shaped Adversarial Patch Attack](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10225573), [GitHub repository](https://github.com/GZHU-DVL/CSPA/tree/main)
   
 
 ### Reference Dataset
