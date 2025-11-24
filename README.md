@@ -120,19 +120,23 @@ PyTorch implementation of **score-based black-box adversarial patch attacks** wi
 ## How to Run the Code
 
 1) **Choose an attack variant**  
-   Branches are named after the attacks (e.g., `ShapeAware`, `PatchCross`).
+   Each variant has its own folder: [ShapeAware](/ShapeAware/) · [PatchCross](/PatchCross/)
 
-2) **Get that branch**
+2) **Enter the folder**
 ```bash
-# from your repo root
-git fetch --all
-git checkout <variant-branch>   # e.g., git checkout ShapeAware
+# from repo root
+cd ShapeAware    # or: cd PatchCross
 ```
 
 3) **Open the matching notebook**  
-   Run the notebook whose filename matches the variant, e.g.:
+   Launch Jupyter and run the notebook for that variant, for example:
 - `Shape_aware.ipynb`
 
+> Tip: Run all cells via `jupyter lab` or `jupyter notebook`.
+
+### Ready-to-run Kaggle notebooks (temp links)
+- **ShapeAware:** [ShapeAware – Kaggle Notebook](https://kaggle.com/code/YOUR-USER/shapeaware)  
+- **PatchCross:** [PatchCross – Kaggle Notebook](https://kaggle.com/code/YOUR-USER/patchcross)
 
 
 
