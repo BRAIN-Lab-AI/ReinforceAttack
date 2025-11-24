@@ -47,8 +47,8 @@ This project lies in the domain of adversarial machine learning for computer vis
 We revisit **PatchAttack** a query-efficient, black-box adversarial patch framework that learns both where to place a patch and what it should look like—and elevate patch geometry to a first-class decision. Building on the textured variant (TPA), we design two targeted, score-based black-box attacks: **ShapeAware**, which adds a shape head (circle/triangle/square) with an area-aware reward to encourage compact, overlapping masks; and **PatchCross**, which specializes the mask to a thin X-shape for strong camouflage while keeping the original targeted reward. Under matched budgets (fixed query limits, up to 𝑁 placements with per-step occlusion), we evaluate on **ImageNet ILSVRC-2012** using ResNet-50 and ViT-B/16, reporting attack success rate (ASR), average number of queries (ANQ), and average patch area (APA).
 
 ### Project Documents
-- **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/Project_report.pdf)
+- **Presentation:** [Project Presentation.](/presentation.pptx)
+- **Report:** [Project Report](/Project_report.pdf), [report on Overleaf.](https://www.overleaf.com/read/vchwmdffskss#efa444)
 
 ### Reference Papers
 - [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/pdf/2004.05682): more information can be found at this [GitHub repository.](https://github.com/Chenglin-Yang/PatchAttack)
