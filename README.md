@@ -10,7 +10,7 @@
 Patch attacks modify only a small, localized region of an image yet can force a victim model to misclassify—either toward a specific target label or away from the ground-truth label. This paper introduces PatchAttack, a query-efficient black-box method that learns both where to place patches and what they should look like. The attack can be modeled as a reinforcement-learning (RL) problem: an agent chooses a patch (either a monochrome patch or a crop from a learned texture dictionary) and its location (the action space), queries the victim model (the environment) with the patched image, receives a reward based on the model’s output probabilities, and updates its policy to optimize next actions. Figure 1 illustrates this loop.
 
 ![Figure 1: black-box texture-based patch attack via reinforcement learning.](Picture1.png)
-*Figure 1.* Black-box texture-based patch attack. Source: [arXiv:2004.05682](https://arxiv.org/abs/2004.05682).
+*Figure 1.* Black-box texture-based patch attack. Source: [arXiv:2004.05682](https://arxiv.org/pdf/2004.05682).
 
 
 On ImageNet models (ResNet, DenseNet, ResNeXt, MobileNetV2), PatchAttack’s textured variant (TPA) reduces top-1 accuracy to <1% with only ~3% of pixels modified and ~10³ queries in the non-targeted case, and achieves ≈100% target-label accuracy while modifying on the order of 10% of the image. Beyond raw success rate, it is markedly more query-efficient than Metropolis–Hastings patch search and remains effective against defenses such as Feature Denoising (Denoise-ResNet152) and shape-biased networks trained on Stylized-ImageNet.
@@ -57,7 +57,7 @@ with Reinforcement Learning](https://arxiv.org/pdf/2004.05682)
   
 
 ### Reference Dataset
-- The texture dictionary (published by the PatchAttack authors) is provided in the following two parts, and Images Test_set is the image group we used for evaluation and comparison.
+The texture dictionary (published by the PatchAttack authors) is provided in the following two parts, and Images Test_set is the image group we used for evaluation and comparison.
 - [TextureDict_ImageNet_0.zip](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F0%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
 - [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/personal/cyang76_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack%2FTextureDict%5FImageNet%5F1%2Ezip&parent=%2Fpersonal%2Fcyang76%5Fjh%5Fedu%2FDocuments%2FPatchAttack&ga=1)
 - [Images Test_set](https://drive.google.com/file/d/1a2c4v2KR6OEyHv4PlqcoibOCSQKdG1pp/view?usp=drive_link)
