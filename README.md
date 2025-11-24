@@ -51,8 +51,8 @@ We revisit **PatchAttack** a query-efficient, black-box adversarial patch framew
 - **Report:** [Project Report](/Project_report.pdf)
 
 ### Reference Papers
-- [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/pdf/2004.05682). More information can be found at this [GitHub repository.](https://github.com/Chenglin-Yang/PatchAttack)
-- [Cross-Shaped Adversarial Patch Attack](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10225573). More information can be found at this [GitHub repository.](https://github.com/GZHU-DVL/CSPA/tree/main)
+- [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/pdf/2004.05682): more information can be found at this [GitHub repository.](https://github.com/Chenglin-Yang/PatchAttack)
+- [Cross-Shaped Adversarial Patch Attack](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10225573): more information can be found at this [GitHub repository.](https://github.com/GZHU-DVL/CSPA/tree/main)
   
 
 ### Reference Dataset
@@ -131,7 +131,7 @@ cd ShapeAware    # or: cd PatchCross
    Launch Jupyter and run the notebook for that variant, for example:
 - `Shape_aware.ipynb`
 
-> Tip: Run all cells via `jupyter lab` or `jupyter notebook`.
+> Tip: all the python libraries that need installation are avaliable at [requirements.txt](/requirements.txt) .
 
 ### Ready-to-run Kaggle notebooks (temp links)
 - **ShapeAware:** [ShapeAware – Kaggle Notebook](https://www.kaggle.com/code/mangooo999/shapeaware)  
